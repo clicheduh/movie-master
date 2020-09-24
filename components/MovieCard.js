@@ -1,4 +1,3 @@
-// import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -49,7 +48,8 @@ const styles = (theme) => ({
         color: theme.palette.grey[500]
     },
     progress: {
-        marginLeft: '10px'
+        marginLeft: '10px',
+        marginTop: '10px'
     },
     dialogTitle: {
         marginRight: '50px',
@@ -88,7 +88,6 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 const MovieCard = withStyles(styles)((props) => {
-    // const classes = useStyles();
     const { classes } = props;
     const { movie } = props;
 
@@ -155,14 +154,6 @@ const MovieCard = withStyles(styles)((props) => {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                {/* <Button
-                    size="small"
-                    color="primary"
-                    className={classes.buttonActions}
-                    onClick={this.clickHandler}
-                >
-                    Learn More
-                </Button> */}
                 <Button
                     size="small"
                     className={classes.buttonActions}
@@ -187,13 +178,6 @@ const MovieCard = withStyles(styles)((props) => {
                         id="plotModal"
                         className={classes.dialogContent}
                     >
-                        {/* <Typography gutterBottom>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Nobis quia animi atque culpa sapiente eos illo
-                            quaerat ratione sint labore nihil, distinctio vero
-                            quam earum quae quis optio laboriosam veritatis!
-                            
-                        </Typography> */}
                         <CircularProgress
                             color="secondary"
                             margin="10px auto"

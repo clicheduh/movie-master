@@ -70,14 +70,28 @@ class Index extends Component {
                 )
                 .then((res) => {
                     var movieArray = res.data.Search;
+                    return movieArray;
+                })
+                .then((movieArray) => {
                     if (movieArray) {
-                        this.setState({
-                            ...this.state,
-                            movieArray: movieArray
-                        });
+                        if (movieArray.length <= 8) {
+                            this.setState({
+                                ...this.state,
+                                movieArray: movieArray
+                            });
+                        } else {
+                            movieArray.slice(0, 8);
+                            this.setState({
+                                ...this.state,
+                                movieArray: movieArray
+                            });
+                        }
                     } else {
                         alert('No series found!');
                     }
+                })
+                .catch((err) => {
+                    throw err;
                 });
         } else if (this.state.movieTitle && this.state.movieYear === '') {
             axios
@@ -87,36 +101,31 @@ class Index extends Component {
                 )
                 .then((res) => {
                     var movieArray = res.data.Search;
-                    this.setState({
-                        ...this.state,
-                        movieArray: movieArray
-                    });
+                    return movieArray;
+                })
+                .then((movieArray) => {
+                    if (movieArray) {
+                        if (movieArray.length <= 8) {
+                            this.setState({
+                                ...this.state,
+                                movieArray: movieArray
+                            });
+                        } else {
+                            movieArray.slice(0, 8);
+                            this.setState({
+                                ...this.state,
+                                movieArray: movieArray
+                            });
+                        }
+                    } else {
+                        alert('No series found!');
+                    }
+                })
+                .catch((err) => {
+                    throw err;
                 });
         }
-        // setTimeout(() => {
-        //     this.setState({
-        //         movieTitle: '',
-        //         movieYear: '',
-        //         movieArray: []
-        //     });
-        // }, 5000);
     };
-
-    // setTimeout(() => {
-    //     axios
-    //         .get(
-    //             'http://www.omdbapi.com/?apikey=50f7c729&s=' +
-    //                 this.state.movieTitle +
-    //                 '&type=series'
-    //         )
-    //         .then((res) => {
-    //             var movieArray = res.data.Search;
-    //             this.setState({
-    //                 ...this.state,
-    //                 movieArray: movieArray
-    //             });
-    //         });
-    // }, 500);
 
     render() {
         const { classes } = this.props;
@@ -129,7 +138,7 @@ class Index extends Component {
                         gutterBottom
                         className={classes.mainHeading}
                     >
-                        Search for any movie
+                        Search for any series
                     </Typography>
                     <TextField
                         label="Movie Title"
