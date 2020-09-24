@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import MovieCard from '../components/MovieCard';
-import PlotModal from '../components/PlotModal';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,6 +20,26 @@ const useStyles = makeStyles((theme) => ({
 const MovieGallery = (props) => {
     const classes = useStyles();
     const { movieArray } = props;
+    var i,
+        newMovieArray = [];
+
+    if (movieArray.length <= 8) {
+    } else if (movieArray.length > 8) {
+        const movieArrayOne = movieArray.slice(0, 8);
+        const movieArrayTwo = movieArray.slice(8);
+    }
+
+    for (i = 0; i < movieArray.length; i++) {
+        axios
+            .get(
+                'http://www.omdbapi.com/?apikey=50f7c729&i=' +
+                    movieArray[i].imdbID
+            )
+            .then((res) => {
+                newMovieArray.push(res.data);
+                console.log(newMovieArray);
+            });
+    }
     const output = movieArray ? (
         movieArray.map((movie) => {
             return (

@@ -12,7 +12,7 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-// import PlotModal from '../components/PlotModal';
+import axios from 'axios';
 
 const styles = (theme) => ({
     root: {
@@ -20,15 +20,21 @@ const styles = (theme) => ({
         padding: theme.spacing(2)
     },
     cardContent: {
-        marginLeft: '5px'
+        marginTop: '10px'
     },
     buttonActions: {
         margin: '5px',
-        padding: '10px'
+        padding: '8px 20px',
+        color: '#fff',
+        backgroundColor: '#ee6e73',
+        '&:hover': {
+            background: '#e83940'
+        }
     },
     movieCardImage: {
         width: '100%',
-        minHeight: '100%'
+        height: '400px',
+        overflow: 'hidden'
     },
     movieTitle: {
         textOverflow: 'ellipsis',
@@ -76,6 +82,7 @@ const MovieCard = withStyles(styles)((props) => {
 
     const handleClickOpen = () => {
         setOpen(true);
+        moviePlot();
     };
     const handleClose = () => {
         setOpen(false);
@@ -88,6 +95,21 @@ const MovieCard = withStyles(styles)((props) => {
         movieImg = movie.Poster;
     }
 
+    var moviePlot = async function () {
+        axios
+            .get(
+                'http://www.omdbapi.com/?apikey=50f7c729&t=' +
+                    movie.Title +
+                    '&plot=full'
+            )
+            .then((res) => {
+                let output = `
+                <Typography gutterBottom className={classes.modalText}>${res.data.Plot}</Typography>
+            `;
+
+                document.getElementById('plotModal').innerHTML = output;
+            });
+    };
     return (
         <Card className={classes.root}>
             <CardActionArea>
@@ -127,12 +149,10 @@ const MovieCard = withStyles(styles)((props) => {
                 </Button> */}
                 <Button
                     size="small"
-                    variant="outlined"
-                    color="primary"
                     className={classes.buttonActions}
                     onClick={handleClickOpen}
                 >
-                    Open dialog
+                    Full Plot
                 </Button>
                 <Dialog
                     onClose={handleClose}
@@ -145,14 +165,14 @@ const MovieCard = withStyles(styles)((props) => {
                     >
                         {movie.Title}
                     </DialogTitle>
-                    <DialogContent dividers>
-                        <Typography gutterBottom>
+                    <DialogContent dividers id="plotModal">
+                        {/* <Typography gutterBottom>
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. Nobis quia animi atque culpa sapiente eos illo
                             quaerat ratione sint labore nihil, distinctio vero
                             quam earum quae quis optio laboriosam veritatis!
-                            {console.log(movie)}
-                        </Typography>
+                            
+                        </Typography> */}
                     </DialogContent>
                 </Dialog>
             </CardActions>
