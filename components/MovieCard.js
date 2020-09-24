@@ -112,7 +112,7 @@ const MovieCard = withStyles(styles)((props) => {
         setTimeout(() => {
             axios
                 .get(
-                    'http://www.omdbapi.com/?apikey=50f7c729&t=' +
+                    'https://www.omdbapi.com/?apikey=50f7c729&t=' +
                         movie.Title +
                         '&plot=full'
                 )

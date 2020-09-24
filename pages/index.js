@@ -60,7 +60,7 @@ class Index extends Component {
         if (this.state.movieTitle && this.state.movieYear) {
             axios
                 .get(
-                    'http://www.omdbapi.com/?apikey=50f7c729&type=series&s=' +
+                    'https://www.omdbapi.com/?apikey=50f7c729&type=series&s=' +
                         this.state.movieTitle +
                         '&y=' +
                         this.state.movieYear
@@ -93,7 +93,7 @@ class Index extends Component {
         } else if (this.state.movieTitle && this.state.movieYear === '') {
             axios
                 .get(
-                    'http://www.omdbapi.com/?apikey=50f7c729&type=series&s=' +
+                    'https://www.omdbapi.com/?apikey=50f7c729&type=series&s=' +
                         this.state.movieTitle
                 )
                 .then((res) => {

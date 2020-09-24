@@ -28,7 +28,7 @@ const MovieGallery = (props) => {
     for (i = 0; i < movieArray.length; i++) {
         axios
             .get(
-                'http://www.omdbapi.com/?apikey=50f7c729&i=' +
+                'https://www.omdbapi.com/?apikey=50f7c729&i=' +
                     movieArray[i].imdbID
             )
             .then((res) => {

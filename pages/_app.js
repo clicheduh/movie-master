@@ -26,6 +26,10 @@ export default function MyApp(props) {
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width"
                 />
+                <meta
+                    http-equiv="Content-Security-Policy"
+                    content="upgrade-insecure-requests"
+                />
             </Head>
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <ThemeProvider theme={theme}>
