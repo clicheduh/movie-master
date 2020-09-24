@@ -12,6 +12,7 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios';
 
 const styles = (theme) => ({
@@ -46,6 +47,19 @@ const styles = (theme) => ({
         right: theme.spacing(1),
         top: theme.spacing(1),
         color: theme.palette.grey[500]
+    },
+    progress: {
+        marginLeft: '10px'
+    },
+    dialogTitle: {
+        marginRight: '50px',
+        marginLeft: '0px'
+    },
+    dialogContent: {
+        paddingLeft: '25px',
+        paddingRight: '25px',
+        paddingBottom: '25px',
+        lineHeight: '1.75'
     }
 });
 
@@ -96,19 +110,21 @@ const MovieCard = withStyles(styles)((props) => {
     }
 
     var moviePlot = async function () {
-        axios
-            .get(
-                'http://www.omdbapi.com/?apikey=50f7c729&t=' +
-                    movie.Title +
-                    '&plot=full'
-            )
-            .then((res) => {
-                let output = `
+        setTimeout(() => {
+            axios
+                .get(
+                    'http://www.omdbapi.com/?apikey=50f7c729&t=' +
+                        movie.Title +
+                        '&plot=full'
+                )
+                .then((res) => {
+                    let output = `
                 <Typography gutterBottom className={classes.modalText}>${res.data.Plot}</Typography>
             `;
 
-                document.getElementById('plotModal').innerHTML = output;
-            });
+                    document.getElementById('plotModal').innerHTML = output;
+                });
+        }, 1000);
     };
     return (
         <Card className={classes.root}>
@@ -162,10 +178,15 @@ const MovieCard = withStyles(styles)((props) => {
                     <DialogTitle
                         id="customized-dialog-title"
                         onClose={handleClose}
+                        className={classes.dialogTitle}
                     >
                         {movie.Title}
                     </DialogTitle>
-                    <DialogContent dividers id="plotModal">
+                    <DialogContent
+                        dividers
+                        id="plotModal"
+                        className={classes.dialogContent}
+                    >
                         {/* <Typography gutterBottom>
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. Nobis quia animi atque culpa sapiente eos illo
@@ -173,6 +194,11 @@ const MovieCard = withStyles(styles)((props) => {
                             quam earum quae quis optio laboriosam veritatis!
                             
                         </Typography> */}
+                        <CircularProgress
+                            color="secondary"
+                            margin="10px auto"
+                            className={classes.progress}
+                        />
                     </DialogContent>
                 </Dialog>
             </CardActions>

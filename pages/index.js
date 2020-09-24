@@ -29,7 +29,7 @@ const styles = (theme) => ({
     },
     btnContainer: {
         textAlign: 'center',
-        marginBottom: '20px'
+        marginBottom: '40px'
     },
     buttonActions: {
         margin: '5px',

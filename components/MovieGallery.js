@@ -23,11 +23,13 @@ const MovieGallery = (props) => {
     var i,
         newMovieArray = [];
 
-    if (movieArray.length <= 8) {
-    } else if (movieArray.length > 8) {
-        const movieArrayOne = movieArray.slice(0, 8);
-        const movieArrayTwo = movieArray.slice(8);
-    }
+    // if (movieArray.length <= 8) {
+    // } else if (movieArray.length > 8) {
+    //     const movieArrayOne = movieArray.slice(0, 8);
+    //     const movieArrayTwo = movieArray.slice(8);
+    // }
+
+    movieArray.slice(0, 8);
 
     for (i = 0; i < movieArray.length; i++) {
         axios
