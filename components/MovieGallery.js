@@ -33,7 +33,6 @@ const MovieGallery = (props) => {
             )
             .then((res) => {
                 newMovieArray.push(res.data);
-                console.log(newMovieArray);
             });
     }
     const output = movieArray ? (

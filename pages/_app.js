@@ -21,7 +21,7 @@ export default function MyApp(props) {
     return (
         <React.Fragment>
             <Head>
-                <title>Movie Master</title>
+                <title>Movie-Master</title>
                 <meta
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width"

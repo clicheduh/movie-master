@@ -54,9 +54,6 @@ class Index extends Component {
             ...this.state,
             [e.target.name]: e.target.value
         });
-        setTimeout(() => {
-            console.log(this.state);
-        }, 500);
     };
 
     onSearch = () => {
